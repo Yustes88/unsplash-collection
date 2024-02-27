@@ -1,6 +1,7 @@
-import "~/styles/globals.css";
-import { inter } from "~/components/ui/fonts";
+import { fontSans } from "~/components/ui/fonts";
 import { siteConfig } from "~/constants/config";
+import { cn } from "~/lib/utils";
+import "~/styles/globals.css";
 
 export const metadata = {
   title: siteConfig.title,
@@ -15,7 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body
+        className={cn(
+          "bg-background min-h-screen font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }
