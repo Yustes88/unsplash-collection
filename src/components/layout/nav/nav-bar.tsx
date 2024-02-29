@@ -9,7 +9,7 @@ import NavItem from './nav-item'
 const NavBar = () => {
   return (
     <div className="border-b-gray-800 mx-auto border-b-2 px-2 sm:px-6 lg:px-8">
-      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between">
+      <div className="relative mx-auto flex h-[65px] max-w-7xl items-center justify-between">
           <Logo />
         <div className="flex gap-4">
           <ModeToggle />
