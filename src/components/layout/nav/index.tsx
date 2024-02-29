@@ -5,7 +5,7 @@ import NavItem from './nav-item'
 
 const NavBar = () => {
   return (
-    <div className="h-16 border-b-2">
+    <div className="dark:border-gray-800 h-16 border-b">
       <div className="container flex h-full items-center justify-between gap-4">
         <Logo />
 
