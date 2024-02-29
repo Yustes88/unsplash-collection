@@ -1,3 +1,4 @@
+import NavBar from '~/components/ui/NavBar'
 import {fontSans} from '~/components/ui/fonts'
 import {siteConfig} from '~/constants/config'
 import {cn} from '~/lib/utils'
@@ -18,6 +19,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           fontSans.variable,
         )}
       >
+        <NavBar/>
         {children}
       </body>
     </html>
