@@ -1,17 +1,20 @@
+'use client'
 import Link from 'next/link'
+import {usePathname} from 'next/navigation'
 import {Button} from '~/components/ui/button'
+import {MenusType} from '~/data/menus'
 
 type NavItemProps = {
-    item: {
-        title: string,
-        url: string,
-    },
+  item: MenusType
 }
 
 const NavItem = ({item}: NavItemProps) => {
+  const path = usePathname()
   return (
     <Link href={item.url}>
-      <Button variant="outline">{item.title}</Button>
+      <Button variant={path == item.url ? 'secondary' : 'ghost'}>
+        {item.title}
+      </Button>
     </Link>
   )
 }
