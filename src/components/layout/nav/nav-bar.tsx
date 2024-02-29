@@ -1,8 +1,10 @@
 import React from 'react'
-import {Button} from './button'
-import {ModeToggle} from './ModeToggle'
-import Logo from './Logo'
+import {Button} from '../../ui/button'
+import {ModeToggle} from '../../ui/theme-toggle-btn'
 import Link from 'next/link'
+import Logo from '~/components/ui/logo'
+import { navButtons } from '~/data/data'
+import NavItem from './nav-item'
 
 const NavBar = () => {
   return (
@@ -13,8 +15,9 @@ const NavBar = () => {
         </Link>
         <div className="flex gap-4">
           <ModeToggle />
-          <Button variant="outline">Home</Button>
-          <Button variant="outline">Collection</Button>
+          {navButtons.map((item) => (
+            <NavItem item={item}/>
+          ))}
         </div>
       </div>
     </div>
