@@ -33,3 +33,11 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     </html>
   )
 }
+
+/* To organize our code better,  create a 'provider' folder. Inside that folder, create a file named 'theme-provider.tsx' and place the relevant code there.
+
+Additionally, in the 'provider' folder, create an 'index.ts' file. Inside 'index.ts', export the 'ThemeProvider' from 'theme-provider.tsx' using the following syntax:
+
+export { default as ThemeProvider } from './theme-provider';
+
+later on there will be more providers so its better we keep it in seperate folder  */
