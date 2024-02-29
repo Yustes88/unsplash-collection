@@ -1,8 +1,8 @@
-import {ThemeProvider} from '~/components/ui/themeProvider'
 import NavBar from '~/components/ui/NavBar'
 import {fontSans} from '~/components/ui/fonts'
 import {siteConfig} from '~/constants/config'
 import {cn} from '~/lib/utils'
+import { ThemeProvider } from '~/provider'
 import '~/styles/globals.css'
 
 export const metadata = {
