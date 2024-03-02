@@ -6,8 +6,6 @@ const config = {
   },
   plugins: ['@typescript-eslint'],
   extends: [
-    'kentcdodds',
-    'eslint-config-kentcdodds',
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended-type-checked',
     'plugin:@typescript-eslint/stylistic-type-checked',
