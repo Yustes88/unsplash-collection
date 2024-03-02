@@ -10,7 +10,7 @@ const HomePage = () => {
         alt=""
         className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-6 py-32 text-center sm:py-40 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-6 h-[510px] pb-32 text-center lg:px-8">
         <h1 className="text-display font-bold tracking-tight">Search</h1>
         <p className="mt-2 text-sm">
           Search high-resolution images from Unsplash
