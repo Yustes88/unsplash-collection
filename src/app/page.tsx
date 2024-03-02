@@ -1,14 +1,17 @@
 import {Loader2, Mail} from 'lucide-react'
+import Image from 'next/image'
 import {Button} from '~/components/ui/button'
 import SearchInput from '~/components/ui/search-input'
 
 const HomePage = () => {
   return (
     <main className="relative isolate mt-16 min-h-full">
-      <img
+      <Image
         src="/images/hero-image.png"
         alt=""
         className="absolute inset-0 -z-10 h-full w-full object-cover"
+        fill
+        priority
       />
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-6 h-[510px] pb-32 text-center lg:px-8">
         <h1 className="text-display font-bold tracking-tight">Search</h1>
