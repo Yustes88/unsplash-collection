@@ -5,6 +5,11 @@ import {cn} from '~/lib/utils'
 import {ThemeProvider} from '~/providers'
 import '~/styles/globals.css'
 
+import dynamic from 'next/dynamic'
+const TopProgress = dynamic(() => import('~/components/ui/top-progress'), {
+  ssr: false,
+})
+
 export const metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
@@ -23,6 +28,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <ThemeProvider>
           <NavBar />
           {children}
+          <TopProgress />
         </ThemeProvider>
       </body>
     </html>

@@ -6,8 +6,8 @@ const menus = [
   },
   {
     id: 2,
-    title: 'Collection',
-    url: '/collection',
+    title: 'Collections',
+    url: '/collections',
   },
 ]
 

@@ -30,6 +30,9 @@ const config = {
     },
 
     extend: {
+      gridTemplateColumns: {
+        collection: 'repeat(auto-fill, minmax(20rem, 1fr))',
+      },
       colors: {
         'gray-50': 'hsl(var(--gray-50))',
         'gray-100': 'hsl(var(--gray-100))',
@@ -86,10 +89,15 @@ const config = {
           from: {height: 'var(--radix-accordion-content-height)'},
           to: {height: '0'},
         },
+        gradient: {
+          '0%': {backgroundPosition: '0% 50%'},
+          '100%': {backgroundPosition: '100% 50%'},
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        gradient: 'gradient 6s linear infinite',
       },
     },
   },

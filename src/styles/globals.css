@@ -57,7 +57,8 @@
     --lh-xs: 1rem;
   }
 
-  .dark {
+  .dark,
+  :root[class~='dark'] {
     --background: 222, 36%, 11%;
     --foreground: 0 0% 98%;
 
@@ -95,4 +96,12 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #f2c593, #8a3282);
+  background-clip: text;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
