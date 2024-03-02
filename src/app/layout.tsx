@@ -2,13 +2,9 @@ import NavBar from '~/components/layout/nav'
 import {fontSans} from '~/components/ui/fonts'
 import {siteConfig} from '~/constants/config'
 import {cn} from '~/lib/utils'
-import {ThemeProvider} from '~/providers'
 import '~/styles/globals.css'
 
-import dynamic from 'next/dynamic'
-const TopProgress = dynamic(() => import('~/components/ui/top-progress'), {
-  ssr: false,
-})
+import Providers from '~/providers'
 
 export const metadata = {
   title: siteConfig.title,
@@ -25,11 +21,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           fontSans.variable,
         )}
       >
-        <ThemeProvider>
+        <Providers>
           <NavBar />
           {children}
-          <TopProgress />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )

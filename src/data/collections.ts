@@ -4614,14 +4614,13 @@ interface CollectionType {
     }
   }[]
   title: string
-  subtitle: string
   total_photos: number
   user: {
     name: string
-    portfolio_url: string
+    portfolio_url: string | null
 
     social: {
-      portfolio_url: string
+      portfolio_url: string | null
     }
   }
 }
