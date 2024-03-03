@@ -8,7 +8,8 @@ export default function ThemeProvider({
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="light"
+      defaultTheme="system"
+      storageKey = 'theme'
       enableSystem
       disableTransitionOnChange
       {...props}

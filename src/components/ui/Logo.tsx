@@ -6,9 +6,9 @@ import * as React from 'react'
 import {SVGProps} from 'react'
 
 const Logo = (props: SVGProps<SVGSVGElement>) => {
-  const {theme = 'light'} = useTheme()
+  const {theme} = useTheme()
 
-  const updatedTheme = theme === 'light' ? '#101828' : '#fff'
+  const updatedTheme = localStorage.getItem('theme') === 'light' ? '#101828' : '#fff'
 
   return (
     <Link href="/">

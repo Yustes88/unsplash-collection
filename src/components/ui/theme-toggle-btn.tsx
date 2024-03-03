@@ -6,14 +6,14 @@ import {DarkModeSwitch} from 'react-toggle-dark-mode'
 import {Button} from './button'
 
 export default function ThemeToggleBtn() {
-  const {setTheme} = useTheme()
+  const { setTheme } = useTheme();
 
-  const [isDarkMode, setDarkMode] = React.useState(false)
+  const toggleDarkMode = (checked) => {
+    setTheme(checked ? 'dark' : 'light');
+    localStorage.setItem('isDarkMode', checked);
+  };
 
-  const toggleDarkMode = (checked: boolean) => {
-    setDarkMode(checked)
-    setTheme(checked ? 'dark' : 'light')
-  }
+  const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
 
   return (
     <Button
@@ -27,5 +27,5 @@ export default function ThemeToggleBtn() {
         size={18}
       />
     </Button>
-  )
+  );
 }
