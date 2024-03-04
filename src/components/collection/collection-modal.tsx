@@ -3,19 +3,24 @@ import {Plus} from 'lucide-react'
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '~/components/ui/dialog'
-import {Button} from '../ui/button'
 import ImageCollection from '../image/image-collections'
+import {Button} from '../ui/button'
+import SearchInput from '../ui/search-input'
 
 const CollectionModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary" icon={<Plus size={17} />} size="sm">
+        <Button
+          variant="secondary"
+          icon={<Plus size={17} />}
+          size="sm"
+          tabIndex={0}
+        >
           Add to Collection
         </Button>
       </DialogTrigger>
@@ -24,7 +29,15 @@ const CollectionModal = () => {
           <DialogTitle>Add to Collection</DialogTitle>
         </DialogHeader>
 
-        <ImageCollection withTitle={false} addCollection />
+        <SearchInput
+          placeholder="Enter your keywords.."
+          value={'Autumn Vibe'}
+        />
+
+        <div className="mt-3 space-y-2">
+          <p className="text-xs">3 Matches</p>
+          <ImageCollection withTitle={false} addCollection />
+        </div>
       </DialogContent>
     </Dialog>
   )
