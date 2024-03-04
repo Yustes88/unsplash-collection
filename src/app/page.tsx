@@ -17,7 +17,7 @@ const HomePage = () => {
         <p className="mt-2 text-sm">
           The internet’s source for visuals. Powered by creators everywhere.
         </p>
-        <SearchInput />
+        <SearchInput placeholder="Search high-resolution images from Unsplash" />
         {/* REMOVE IT IF NO NEED QUICK SEARCH */}
         <TrendingSearches />
       </div>
