@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic'
 import {ShuffleGridContainer, generateSkeleton} from '~/components/shuffle-grid'
+import TrendingSearches from '~/components/trending-search'
 import SearchInput from '~/components/ui/search-input'
 
 const ShuffleGrid = dynamic(() => import('~/components/shuffle-grid'), {
@@ -17,6 +18,8 @@ const HomePage = () => {
           The internet’s source for visuals. Powered by creators everywhere.
         </p>
         <SearchInput />
+        {/* REMOVE IT IF NO NEED QUICK SEARCH */}
+        <TrendingSearches />
       </div>
 
       <ShuffleGrid />
