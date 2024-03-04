@@ -2,17 +2,29 @@
 
 import {useTheme} from 'next-themes'
 import * as React from 'react'
-import {DarkModeSwitch} from 'react-toggle-dark-mode'
 import {Button} from './button'
+import {Loader2, Moon, Sun} from 'lucide-react'
+import {useIsClient} from '@uidotdev/usehooks'
 
 export default function ThemeToggleBtn() {
-  const {setTheme} = useTheme()
+  const {theme, setTheme} = useTheme()
+  const isClient = useIsClient()
 
-  const [isDarkMode, setDarkMode] = React.useState(false)
-
-  const toggleDarkMode = (checked: boolean) => {
-    setDarkMode(checked)
+  const toggleDarkMode = (theme: string | undefined) => {
+    const checked = theme === 'light'
     setTheme(checked ? 'dark' : 'light')
+  }
+
+  if (!isClient) {
+    return (
+      <Button
+        variant="outline"
+        size="icon"
+        className="fixed bottom-4 right-4 rounded-full sm:static"
+      >
+        <Loader2 className='animate-spin'/>
+      </Button>
+    )
   }
 
   return (
@@ -20,12 +32,9 @@ export default function ThemeToggleBtn() {
       variant="outline"
       size="icon"
       className="fixed bottom-4 right-4 rounded-full sm:static"
+      onClick={() => toggleDarkMode(theme)}
     >
-      <DarkModeSwitch
-        checked={isDarkMode}
-        onChange={toggleDarkMode}
-        size={18}
-      />
+      {theme === 'dark' ? <Moon /> : <Sun />}
     </Button>
-  );
+  )
 }
