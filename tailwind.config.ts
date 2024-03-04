@@ -33,6 +33,7 @@ const config = {
       gridTemplateColumns: {
         collection: 'repeat(auto-fill, minmax(20rem, 1fr))',
       },
+
       colors: {
         'gray-50': 'hsl(var(--gray-50))',
         'gray-100': 'hsl(var(--gray-100))',

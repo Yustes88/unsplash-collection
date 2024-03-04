@@ -1,55 +1,26 @@
-import {Loader2, Mail} from 'lucide-react'
-import Image from 'next/image'
-import {Button} from '~/components/ui/button'
+import dynamic from 'next/dynamic'
+import {ShuffleGridContainer, generateSkeleton} from '~/components/shuffle-grid'
 import SearchInput from '~/components/ui/search-input'
+
+const ShuffleGrid = dynamic(() => import('~/components/shuffle-grid'), {
+  loading: () => (
+    <ShuffleGridContainer>{generateSkeleton()}</ShuffleGridContainer>
+  ),
+})
 
 const HomePage = () => {
   return (
-    <main className="relative isolate mt-16 min-h-full">
-      <Image
-        src="/images/hero-image.png"
-        alt=""
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
-        fill
-        priority
-      />
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-2 px-6 h-[510px] pb-32 text-center lg:px-8">
-        <h1 className="text-display font-bold tracking-tight">Search</h1>
+    <section className="container grid min-h-[calc(100dvh-64px)] grid-cols-1 items-center gap-8 py-6 md:grid-cols-2">
+      <div className="space-y-4">
+        <h1 className="text-display font-bold tracking-tight">Unsplash</h1>
         <p className="mt-2 text-sm">
-          Search high-resolution images from Unsplash
+          The internet’s source for visuals. Powered by creators everywhere.
         </p>
         <SearchInput />
       </div>
 
-      {/*
-      <h1 className="text-display font-semibold">Title - Be Vietnam</h1>
-      <p className="text-base">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, fugiat!
-      </p>
-      <p className="text-sm">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, fugiat!
-      </p>
-
-      <p className="text-xs text-dark-100">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora
-        recusandae quisquam distinctio possimus id reiciendis quae quis
-        consectetur voluptate perspiciatis repudiandae, facilis, tenetur illo
-        repellendus, quidem quod debitis delectus ut.
-      </p> */}
-
-      {/*  <div className="flex items-center gap-5">
-        <Button variant="outline">Outline</Button>
-        <Button variant="default">Default</Button>
-        <Button variant="destructive">Destructive</Button>
-        <Button variant="link">Link</Button>
-        <Button disabled icon={<Loader2 className="size-4 animate-spin" />}>
-          Please wait
-        </Button>
-        <Button variant="secondary" icon={<Mail className=" size-4" />}>
-          Login with Email
-        </Button>
-      </div> */}
-    </main>
+      <ShuffleGrid />
+    </section>
   )
 }
 
