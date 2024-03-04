@@ -1,7 +1,7 @@
 import React from 'react'
 import {cn} from '~/lib/utils'
 import BlurImage from '../ui/blur-image'
-import {CollectionType} from '~/data/collections'
+import {type CollectionType} from '~/data/collections'
 
 const CollectionCard: React.FC<CollectionType> = ({
   preview_photos,
@@ -21,10 +21,7 @@ const CollectionCard: React.FC<CollectionType> = ({
         <BlurImage
           src={photo?.urls.regular ?? ''}
           alt="Collection image not found"
-          fill
-          priority
           fetchPriority={index === 0 ? 'high' : 'low'}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
     ))

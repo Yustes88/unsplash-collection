@@ -3,7 +3,7 @@ import {GradientTypo} from '~/components/ui/gradient-typo'
 
 const CollectionPage = () => {
   return (
-    <div className="container space-y-12 py-8 sm:space-y-16 sm:py-12">
+    <div className="page-container">
       <GradientTypo heading="Collections">
         <p className="mx-auto max-w-md text-sm sm:text-base">
           Explore the world through collections of beautiful photos free to use

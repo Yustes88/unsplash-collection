@@ -57,8 +57,7 @@
     --lh-xs: 1rem;
   }
 
-  .dark,
-  :root[class~='dark'] {
+  .dark {
     --background: 222, 36%, 11%;
     --foreground: 0 0% 98%;
 
@@ -86,6 +85,12 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply container space-y-12 py-8 sm:space-y-16 sm:py-12;
   }
 }
 
