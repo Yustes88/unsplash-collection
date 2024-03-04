@@ -1,17 +1,30 @@
 'use client'
 
+import {useIsClient} from '@uidotdev/usehooks'
 import {useTheme} from 'next-themes'
 import Link from 'next/link'
-import * as React from 'react'
-import {SVGProps} from 'react'
+import {type SVGProps} from 'react'
+import {Skeleton} from './skeleton'
 
 const Logo = (props: SVGProps<SVGSVGElement>) => {
-  const {theme = 'light'} = useTheme()
+  const {theme} = useTheme()
+  const isClient = useIsClient()
 
   const updatedTheme = theme === 'light' ? '#101828' : '#fff'
 
+  if (!isClient) {
+    return (
+      <div className="flex items-center space-x-2">
+        <Skeleton className="h-[24px] w-[24px]" />
+        <div>
+          <Skeleton className="h-[20px] w-[88px]" />
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <Link href="/">
+    <Link href="/" className="relative">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width={118}
