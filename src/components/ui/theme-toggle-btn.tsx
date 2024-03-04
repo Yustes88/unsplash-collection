@@ -6,14 +6,14 @@ import {DarkModeSwitch} from 'react-toggle-dark-mode'
 import {Button} from './button'
 
 export default function ThemeToggleBtn() {
-  const { setTheme } = useTheme();
+  const {setTheme} = useTheme()
 
-  const toggleDarkMode = (checked) => {
-    setTheme(checked ? 'dark' : 'light');
-    localStorage.setItem('isDarkMode', checked);
-  };
+  const [isDarkMode, setDarkMode] = React.useState(false)
 
-  const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+  const toggleDarkMode = (checked: boolean) => {
+    setDarkMode(checked)
+    setTheme(checked ? 'dark' : 'light')
+  }
 
   return (
     <Button
