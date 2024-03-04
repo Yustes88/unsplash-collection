@@ -1,5 +1,3 @@
-import {createId} from '@paralleldrive/cuid2'
-
 const collections = [
   {
     id: 'trvHpXOSq8I',

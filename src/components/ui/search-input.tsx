@@ -1,8 +1,7 @@
 import {type ClassValue} from 'clsx'
-import Image from 'next/image'
+import {Search} from 'lucide-react'
 import {cn} from '~/lib/utils'
 import {Input, type InputProps} from './input'
-import {Search} from 'lucide-react'
 
 interface SearchInputProps {
   className?: ClassValue

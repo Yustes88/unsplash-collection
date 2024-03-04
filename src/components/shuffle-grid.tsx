@@ -1,7 +1,14 @@
 'use client'
 import {useIsClient} from '@uidotdev/usehooks'
 import {motion} from 'framer-motion'
-import {type ReactNode, useEffect, useRef, useState} from 'react'
+import {
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  memo,
+} from 'react'
 import BlurImage from './ui/blur-image'
 import {Skeleton} from './ui/skeleton'
 import {squareData} from '~/data'
@@ -53,10 +60,16 @@ const generateSquares = () => {
   ))
 }
 
-const ShuffleGrid = () => {
+const ShuffleGrid = memo(() => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [squares, setSquares] = useState(generateSquares())
   const isClient = useIsClient()
+
+  const shuffleSquares = useCallback(() => {
+    setSquares(generateSquares())
+
+    timeoutRef.current = setTimeout(shuffleSquares, 3000)
+  }, [])
 
   useEffect(() => {
     shuffleSquares()
@@ -64,19 +77,14 @@ const ShuffleGrid = () => {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
-  }, [])
-
-  const shuffleSquares = () => {
-    setSquares(generateSquares())
-
-    timeoutRef.current = setTimeout(shuffleSquares, 3000)
-  }
+  }, [shuffleSquares])
 
   return (
     <ShuffleGridContainer>
       {!isClient ? generateSkeleton() : squares.slice(1, 13).map(sq => sq)}
     </ShuffleGridContainer>
   )
-}
+})
 
+ShuffleGrid.displayName = 'ShuffleGrid'
 export default ShuffleGrid
