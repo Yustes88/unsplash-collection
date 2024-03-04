@@ -22,7 +22,7 @@ export default function ThemeToggleBtn() {
         size="icon"
         className="fixed bottom-4 right-4 rounded-full sm:static"
       >
-        <Loader2 className='animate-spin'/>
+        <Loader2 className="animate-spin" size={15} />
       </Button>
     )
   }
@@ -34,7 +34,7 @@ export default function ThemeToggleBtn() {
       className="fixed bottom-4 right-4 rounded-full sm:static"
       onClick={() => toggleDarkMode(theme)}
     >
-      {theme === 'dark' ? <Moon /> : <Sun />}
+      {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
     </Button>
   )
 }
