@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
+import {MasonryGrid} from '~/components/ui/masonry-grid'
 import SearchInput from '~/components/ui/search-input'
-import {SearchResult} from '~/components/ui/search-result'
 
 const ImageSearchPage = () => {
   return (
@@ -13,7 +13,7 @@ const ImageSearchPage = () => {
         </div>
       </div>
       <div className="container mb-20 mt-48">
-        <SearchResult />
+        <MasonryGrid />
       </div>
     </>
   )

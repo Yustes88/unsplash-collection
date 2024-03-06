@@ -12,7 +12,7 @@ export default function SearchInput({
   ...props
 }: InputProps & SearchInputProps) {
   return (
-    <div className="w-full ">
+    <div className="w-full">
       <label htmlFor="search"></label>
       <div className="relative mt-2 flex rounded-md shadow-sm">
         <Input
