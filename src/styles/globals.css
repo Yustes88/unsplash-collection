@@ -110,3 +110,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.gradient-image {
+  background: linear-gradient(to right, #f2c593, #8a3282);
+}
