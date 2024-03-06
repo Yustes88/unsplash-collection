@@ -5,13 +5,7 @@ import {squareData} from '~/data'
 export function MasonryGrid() {
   const items = squareData.map((square, index) => (
     <div key={index} className="mb-4 break-inside-avoid">
-      <Image
-        alt="Photo"
-        src={square.src}
-        width={400}
-        height={400}
-        sizes="100hw"
-      />
+      <Image alt="Photo" src={square.src} width={400} height={400} />
     </div>
   ))
 
