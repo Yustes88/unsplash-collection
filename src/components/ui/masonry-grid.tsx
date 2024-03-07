@@ -9,9 +9,5 @@ export function MasonryGrid() {
     </div>
   ))
 
-  return (
-    <div>
-      <div className="columns-2 gap-4 md:columns-4">{items}</div>
-    </div>
-  )
+  return <div className="columns-2 gap-4 md:columns-4">{items}</div>
 }
