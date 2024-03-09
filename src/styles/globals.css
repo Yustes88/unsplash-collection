@@ -90,7 +90,7 @@
 
 @layer components {
   .page-container {
-    @apply container space-y-12 py-8 sm:space-y-16 sm:py-12;
+    @apply container  space-y-12 py-8 sm:space-y-16 sm:py-12;
   }
 }
 
@@ -103,14 +103,13 @@
   }
 }
 
+.gradient-image,
 .gradient-text {
   background: linear-gradient(to right, #f2c593, #8a3282);
-  background-clip: text;
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-.gradient-image {
-  background: linear-gradient(to right, #f2c593, #8a3282);
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

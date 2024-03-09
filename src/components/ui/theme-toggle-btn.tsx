@@ -1,10 +1,9 @@
 'use client'
 
-import {useTheme} from 'next-themes'
-import * as React from 'react'
-import {Button} from './button'
-import {Loader2, Moon, Sun} from 'lucide-react'
 import {useIsClient} from '@uidotdev/usehooks'
+import {Loader2, Moon, Sun} from 'lucide-react'
+import {useTheme} from 'next-themes'
+import {Button} from './button'
 
 export default function ThemeToggleBtn() {
   const {theme, setTheme} = useTheme()
@@ -15,26 +14,20 @@ export default function ThemeToggleBtn() {
     setTheme(checked ? 'dark' : 'light')
   }
 
-  if (!isClient) {
-    return (
-      <Button
-        variant="outline"
-        size="icon"
-        className="fixed bottom-4 right-4 rounded-full sm:static"
-      >
-        <Loader2 className="animate-spin" size={15} />
-      </Button>
-    )
-  }
-
   return (
     <Button
       variant="outline"
       size="icon"
-      className="fixed bottom-4 right-4 rounded-full sm:static"
+      className="rounded-full "
       onClick={() => toggleDarkMode(theme)}
     >
-      {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
+      {!isClient ? (
+        <Loader2 className="animate-spin" size={15} />
+      ) : theme === 'dark' ? (
+        <Moon size={16} />
+      ) : (
+        <Sun size={16} />
+      )}
     </Button>
   )
 }

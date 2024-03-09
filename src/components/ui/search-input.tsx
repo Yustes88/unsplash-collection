@@ -20,10 +20,10 @@ export default function SearchInput({
           type="text"
           name="search"
           id="search"
-          className={cn('h-14', className)}
+          className={cn('h-14 pr-12', className)}
         />
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-          <Search size={24} className="text-gray-100" />
+        <div className="pointer-events-none absolute inset-y-0 right-1 flex items-center pr-3">
+          <Search size={24} className="text-gray-50" />
         </div>
       </div>
     </div>

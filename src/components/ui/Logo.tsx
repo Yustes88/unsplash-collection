@@ -24,11 +24,12 @@ const Logo = (props: SVGProps<SVGSVGElement>) => {
   }
 
   return (
-    <Link href="/" className="relative">
+    <Link href="/" className="relative block w-32">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={118}
-        height={24}
+        width="100%"
+        viewBox="0 0 118 24"
+        preserveAspectRatio="xMidYMid meet"
         fill="none"
         {...props}
       >

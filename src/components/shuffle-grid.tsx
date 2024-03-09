@@ -14,7 +14,7 @@ import {Skeleton} from './ui/skeleton'
 import {squareData} from '~/data'
 
 export const ShuffleGridContainer = ({children}: {children: ReactNode}) => {
-  return <div className=" grid grid-cols-4 gap-2">{children}</div>
+  return <div className="grid grid-cols-4 gap-2">{children}</div>
 }
 
 export const generateSkeleton = () =>
