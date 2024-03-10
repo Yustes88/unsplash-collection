@@ -1,31 +1,59 @@
+'use client'
+
 import {type ClassValue} from 'clsx'
-import {Search} from 'lucide-react'
+import {Loader2, Search} from 'lucide-react'
+import {useRouter} from 'next/navigation'
+import {memo, useRef, type FC, type KeyboardEvent} from 'react'
+import useSearchPhotos from '~/hooks/useSearchPhotos'
 import {cn} from '~/lib/utils'
-import {Input, type InputProps} from './input'
+import {Input} from './input'
 
 interface SearchInputProps {
   className?: ClassValue
+  query?: string
 }
 
-export default function SearchInput({
-  className,
-  ...props
-}: InputProps & SearchInputProps) {
+const SearchInput: FC<SearchInputProps> = ({className, query, ...props}) => {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
+  const {isLoading} = useSearchPhotos({query: query ?? '', page: 1})
+
+  const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && inputRef.current) {
+      void router.push(
+        `/search/photos?query=${encodeURIComponent(inputRef.current.value.toLowerCase())}&page=1`,
+      )
+    }
+  }
+
   return (
     <div className="w-full">
-      <label htmlFor="search"></label>
+      <label htmlFor="search" className="sr-only">
+        Search
+      </label>
       <div className="relative mt-2 flex rounded-md shadow-sm">
         <Input
           {...props}
           type="text"
           name="search"
           id="search"
+          ref={inputRef}
+          defaultValue={query}
           className={cn('h-14 pr-12', className)}
+          placeholder="Enter your keywords..."
+          onKeyDown={onKeyDownHandler}
         />
         <div className="pointer-events-none absolute inset-y-0 right-1 flex items-center pr-3">
-          <Search size={24} className="text-gray-50" />
+          {isLoading ? (
+            <Loader2 className="animate-spin" size={24} />
+          ) : (
+            <Search size={24} className="text-gray-50" />
+          )}
         </div>
       </div>
     </div>
   )
 }
+
+SearchInput.displayName = 'SearchInput'
+export default memo(SearchInput)

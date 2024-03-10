@@ -29,10 +29,7 @@ const CollectionModal = () => {
           <DialogTitle>Add to Collection</DialogTitle>
         </DialogHeader>
 
-        <SearchInput
-          placeholder="Enter your keywords.."
-          value={'Autumn Vibe'}
-        />
+        <SearchInput />
 
         <div className="mt-3 space-y-2">
           <p className="text-xs">3 Matches</p>

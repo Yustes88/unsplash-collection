@@ -12,7 +12,7 @@ const CollectionPhotosPage = () => {
         </GradientTypo>
       </div>
       <div className="container">
-        <MasonryGrid />
+        <MasonryGrid query={''} page={''} />
       </div>
     </>
   )
