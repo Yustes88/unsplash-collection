@@ -19,7 +19,7 @@ const ImageSearchPage = ({
         </div>
       </div>
       <div className="container mb-20 mt-40 sm:mt-48">
-        <MasonryGrid query={searchTerm} page={searchParams.page} />
+        <MasonryGrid query={searchTerm} />
       </div>
     </>
   )

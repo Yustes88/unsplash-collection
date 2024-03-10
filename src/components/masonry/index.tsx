@@ -20,15 +20,26 @@ const heightClasses = [
   'h-full',
 ]
 
-export function MasonryGrid({query, page}: {query: string; page: string}) {
-  const {data: response, isLoading} = useSearchPhotos({
+export function MasonryGrid({query}: {query: string}) {
+  const {
+    data: response,
+    isLoading,
+    status,
+    error,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useSearchPhotos({
     query,
-    page: Number(page),
   })
+
+  const content = response?.pages.flatMap(page =>
+    page.data.results.map(result => result),
+  )
 
   return (
     <>
-      {!isLoading && (response?.results?.length ?? 0) === 0 && (
+      {!isLoading && (content?.length ?? 0) === 0 && (
         <div className="text-center">
           <p>No search results found for</p>
           <strong className="text-gray-100">&quot;{query}&quot;</strong>
@@ -43,10 +54,20 @@ export function MasonryGrid({query, page}: {query: string; page: string}) {
                 className={`${heightClasses[i % heightClasses.length]} mb-4 w-full break-inside-avoid rounded-md`}
               />
             ))
-          : response?.results.map(item => (
-              <MasonryItem key={item.slug} item={item} />
-            ))}
+          : content?.map(item => {
+              return <MasonryItem key={item.slug} item={item} />
+            })}
       </div>
+      <button
+        disabled={!hasNextPage || isFetchingNextPage}
+        onClick={() => fetchNextPage()}
+      >
+        {isFetchingNextPage
+          ? 'Loading more...'
+          : hasNextPage
+            ? 'Load More'
+            : 'Nothing more to load'}
+      </button>
     </>
   )
 }
