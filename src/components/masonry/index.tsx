@@ -1,8 +1,11 @@
 'use client'
+import {useInView} from 'react-intersection-observer'
 import useSearchPhotos from '~/hooks/useSearchPhotos'
 import {Skeleton} from '../ui/skeleton'
 import MasonryItem from './masonry-item'
 import {SEED} from '~/helpers'
+import {useEffect} from 'react'
+import {Loader2} from 'lucide-react'
 
 const heightClasses = [
   'h-32',
@@ -21,11 +24,11 @@ const heightClasses = [
 ]
 
 export function MasonryGrid({query}: {query: string}) {
+  const {ref, inView} = useInView()
+
   const {
     data: response,
     isLoading,
-    status,
-    error,
     fetchNextPage,
     isFetchingNextPage,
     hasNextPage,
@@ -36,6 +39,19 @@ export function MasonryGrid({query}: {query: string}) {
   const content = response?.pages.flatMap(page =>
     page.data.results.map(result => result),
   )
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      console.log('Fire!')
+      fetchNextPage()
+        .then(() => {
+          // Handle success
+        })
+        .catch(error => {
+          // Handle error
+        })
+    }
+  }, [inView, hasNextPage, fetchNextPage])
 
   return (
     <>
@@ -58,16 +74,13 @@ export function MasonryGrid({query}: {query: string}) {
               return <MasonryItem key={item.slug} item={item} />
             })}
       </div>
-      <button
-        disabled={!hasNextPage || isFetchingNextPage}
-        onClick={() => fetchNextPage()}
-      >
-        {isFetchingNextPage
-          ? 'Loading more...'
-          : hasNextPage
-            ? 'Load More'
-            : 'Nothing more to load'}
-      </button>
+      <div ref={ref} className="mt-4 flex items-start justify-center">
+        {isFetchingNextPage ? (
+          <Loader2 className="animate-spin" size={30} />
+        ) : (
+          ''
+        )}
+      </div>
     </>
   )
 }
