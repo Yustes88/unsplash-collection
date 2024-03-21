@@ -1,5 +1,5 @@
 import {useInfiniteQuery} from '@tanstack/react-query'
-import {getPhotos} from '~/api'
+import {getPhotos} from '~/api/queries'
 
 export const useSearchPhotos = ({query}: {query: string}) => {
   return useInfiniteQuery({
