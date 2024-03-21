@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import {GradientTypo} from '~/components/ui/gradient-typo'
-import {MasonryGrid} from '~/components/ui/masonry-grid'
+// import {MasonryGrid} from '~/components/ui/masonry-grid'
 
 const CollectionPhotosPage = () => {
   return (
@@ -12,7 +12,7 @@ const CollectionPhotosPage = () => {
         </GradientTypo>
       </div>
       <div className="container">
-        <MasonryGrid query={''} page={''} />
+        {/* <MasonryGrid query={''} page={''} /> */}
       </div>
     </>
   )

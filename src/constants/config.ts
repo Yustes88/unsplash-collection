@@ -4,6 +4,7 @@ export const siteConfig = {
   icons: [{rel: 'icon', url: '/favicon.ico'}],
 }
 
-export const ORIGIN = process.env.NEXT_PUBLIC_VERCEL_URL
-  ? process.env.NEXT_PUBLIC_VERCEL_URL
-  : 'http://localhost:3000'
+export const ORIGIN =
+  process.env.NODE_ENV === 'production'
+    ? 'https://unsplash-collection.vercel.app'
+    : 'http://localhost:3000'

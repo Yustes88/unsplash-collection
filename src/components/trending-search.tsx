@@ -18,7 +18,7 @@ const TrendingSearches = () => {
         ].map(txt => (
           <Button key={txt} size="sm" variant="outline" asChild>
             <Link
-              href={`/search/photos?query=${encodeURIComponent(txt.toLowerCase())}&page=1`}
+              href={`/search/photos?query=${encodeURIComponent(txt.toLowerCase())}`}
             >
               {txt}
             </Link>

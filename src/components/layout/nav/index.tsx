@@ -1,8 +1,8 @@
 import Logo from '~/components/ui/Logo'
-import {menus} from '~/data'
 import ThemeToggleBtn from '../../ui/theme-toggle-btn'
-import NavItem from './nav-item'
 import NavMobile from './nav-mobile'
+import {menus} from '~/data'
+import NavItem from './nav-item'
 
 const NavBar = () => {
   return (
@@ -10,10 +10,10 @@ const NavBar = () => {
       <div className="container flex h-full flex-row items-center justify-between gap-4">
         <Logo />
         <div className="hidden items-center sm:flex sm:gap-2">
+          <ThemeToggleBtn />
           {menus.map(menu => (
             <NavItem key={menu.id} item={menu} />
           ))}
-          <ThemeToggleBtn />
         </div>
 
         <NavMobile />

@@ -4,9 +4,9 @@ import {type ClassValue} from 'clsx'
 import {Loader2, Search} from 'lucide-react'
 import {useRouter} from 'next/navigation'
 import {memo, useRef, type FC, type KeyboardEvent} from 'react'
-import useSearchPhotos from '~/hooks/useSearchPhotos'
 import {cn} from '~/lib/utils'
 import {Input} from './input'
+import {useSearchPhotos} from '~/api/hooks/unsplash'
 
 interface SearchInputProps {
   className?: ClassValue
@@ -16,12 +16,12 @@ interface SearchInputProps {
 const SearchInput: FC<SearchInputProps> = ({className, query, ...props}) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
-  const {isLoading} = useSearchPhotos({query: query ?? '', page: 1})
+  const {isLoading} = useSearchPhotos({query: query ?? ''})
 
   const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputRef.current) {
       void router.push(
-        `/search/photos?query=${encodeURIComponent(inputRef.current.value.toLowerCase())}&page=1`,
+        `/search/photos?query=${encodeURIComponent(inputRef.current.value.toLowerCase())}`,
       )
     }
   }
