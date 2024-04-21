@@ -3,6 +3,7 @@ import ThemeToggleBtn from '../../ui/theme-toggle-btn'
 import NavMobile from './nav-mobile'
 import {menus} from '~/data'
 import NavItem from './nav-item'
+import {SignIn} from '~/components/sign-in'
 
 const NavBar = () => {
   return (
@@ -14,6 +15,7 @@ const NavBar = () => {
           {menus.map(menu => (
             <NavItem key={menu.id} item={menu} />
           ))}
+          <SignIn />
         </div>
 
         <NavMobile />

@@ -5,6 +5,7 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(['development', 'test', 'production']),
     UNSPLASH_ACCESS_KEY: z.string().min(1),
+    DATABASE_URL: z.string().min(1),
   },
 
   client: {},
@@ -12,6 +13,7 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     UNSPLASH_ACCESS_KEY: process.env.UNSPLASH_ACCESS_KEY,
+    DATABASE_URL: process.env.DATABASE_URL,
   },
 
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
