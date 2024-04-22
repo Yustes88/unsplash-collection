@@ -1,6 +1,6 @@
-'use client'
-import {useIsClient} from '@uidotdev/usehooks'
-import {motion} from 'framer-motion'
+"use client";
+import { useIsClient } from "@uidotdev/usehooks";
+import { motion } from "framer-motion";
 import {
   type ReactNode,
   useEffect,
@@ -8,46 +8,46 @@ import {
   useState,
   useCallback,
   memo,
-} from 'react'
-import BlurImage from './ui/blur-image'
-import {Skeleton} from './ui/skeleton'
-import {squareData} from '~/data'
+} from "react";
+import BlurImage from "./ui/blur-image";
+import { Skeleton } from "./ui/skeleton";
+import { squareData } from "~/mock";
 
-export const ShuffleGridContainer = ({children}: {children: ReactNode}) => {
-  return <div className="grid grid-cols-4 gap-2">{children}</div>
-}
+export const ShuffleGridContainer = ({ children }: { children: ReactNode }) => {
+  return <div className="grid grid-cols-4 gap-2">{children}</div>;
+};
 
 export const generateSkeleton = () =>
   Array(12)
     .fill(null)
     .map((_, index) => (
       <Skeleton key={index} className="aspect-square size-full" />
-    ))
+    ));
 
 const shuffle = (array: (typeof squareData)[0][]) => {
   let currentIndex = array.length,
-    randomIndex
+    randomIndex;
 
   while (currentIndex != 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex--
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    ;[array[currentIndex], array[randomIndex]] = [
+    [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
       array[currentIndex],
-    ]
+    ];
   }
 
-  return array
-}
+  return array;
+};
 
 const generateSquares = () => {
-  return shuffle(squareData).map(sq => (
+  return shuffle(squareData).map((sq) => (
     <motion.div
       key={sq.id}
       layout
-      transition={{duration: 1.5, type: 'spring'}}
+      transition={{ duration: 1.5, type: "spring" }}
       className="relative aspect-square size-full"
     >
       <BlurImage
@@ -57,34 +57,34 @@ const generateSquares = () => {
         parentclass="rounded-sm object-cover"
       />
     </motion.div>
-  ))
-}
+  ));
+};
 
 const ShuffleGrid = memo(() => {
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const [squares, setSquares] = useState(generateSquares())
-  const isClient = useIsClient()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [squares, setSquares] = useState(generateSquares());
+  const isClient = useIsClient();
 
   const shuffleSquares = useCallback(() => {
-    setSquares(generateSquares())
+    setSquares(generateSquares());
 
-    timeoutRef.current = setTimeout(shuffleSquares, 3000)
-  }, [])
+    timeoutRef.current = setTimeout(shuffleSquares, 3000);
+  }, []);
 
   useEffect(() => {
-    shuffleSquares()
+    shuffleSquares();
 
     return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [shuffleSquares])
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [shuffleSquares]);
 
   return (
     <ShuffleGridContainer>
-      {!isClient ? generateSkeleton() : squares.slice(1, 13).map(sq => sq)}
+      {!isClient ? generateSkeleton() : squares.slice(1, 13).map((sq) => sq)}
     </ShuffleGridContainer>
-  )
-})
+  );
+});
 
-ShuffleGrid.displayName = 'ShuffleGrid'
-export default ShuffleGrid
+ShuffleGrid.displayName = "ShuffleGrid";
+export default ShuffleGrid;

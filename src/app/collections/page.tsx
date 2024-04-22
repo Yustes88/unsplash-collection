@@ -1,5 +1,5 @@
-import {CollectionList} from '~/components/collection'
-import {GradientTypo} from '~/components/ui/gradient-typo'
+import { CollectionList } from "~/components/collection";
+import { GradientTypo } from "~/components/ui/gradient-typo";
 
 const CollectionPage = () => {
   return (
@@ -7,7 +7,7 @@ const CollectionPage = () => {
       <GradientTypo heading="Collections">
         <p className="mx-auto max-w-md text-sm sm:text-base">
           Explore the world through collections of beautiful photos free to use
-          under the{' '}
+          under the{" "}
           <a
             href="https://unsplash.com/license"
             className="font-semibold underline"
@@ -20,7 +20,7 @@ const CollectionPage = () => {
       </GradientTypo>
       <CollectionList />
     </div>
-  )
-}
+  );
+};
 
-export default CollectionPage
+export default CollectionPage;

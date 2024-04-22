@@ -1,10 +1,10 @@
-import dynamic from 'next/dynamic'
-import TrendingSearches from '~/components/trending-search'
-import SearchInput from '~/components/ui/search-input'
+import dynamic from "next/dynamic";
+import TrendingSearches from "~/components/trending-search";
+import SearchInput from "~/components/ui/search-input";
 
-const ShuffleGrid = dynamic(() => import('~/components/shuffle-grid'), {
+const ShuffleGrid = dynamic(() => import("~/components/shuffle-grid"), {
   ssr: false,
-})
+});
 
 const HomePage = () => {
   return (
@@ -15,13 +15,12 @@ const HomePage = () => {
           The internet’s source for visuals. Powered by creators everywhere.
         </p>
         <SearchInput />
-        {/* REMOVE IT IF NO NEED QUICK SEARCH */}
         <TrendingSearches />
       </div>
 
       <ShuffleGrid />
     </section>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

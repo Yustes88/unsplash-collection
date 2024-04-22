@@ -1,27 +1,27 @@
-'use client'
+"use client";
 
-import React from 'react'
-import {Next13ProgressBar} from 'next13-progressbar'
-import ThemeProvider from './theme-provider'
-import ReactQueryProvider from './react-query'
-import {SessionProvider} from 'next-auth/react'
+import NextTopLoader from "nextjs-toploader";
+import React from "react";
+import ThemeToggleBtn from "~/components/ui/theme-toggle-btn";
+import AuthSessionProvider from "./next-auth";
+import ReactQueryProvider from "./react-query";
+import ThemeProvider from "./theme-provider";
 
-const Providers = ({children}: {children: React.ReactNode}) => {
+import { Toaster } from "react-hot-toast";
+
+const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SessionProvider>
+    <AuthSessionProvider>
       <ReactQueryProvider>
         <ThemeProvider>
           {children}
-          <Next13ProgressBar
-            height="4px"
-            color="#8a3282"
-            options={{showSpinner: true}}
-            showOnShallow
-          />
+          <NextTopLoader color="#8a3282" showSpinner={false} />
+          <ThemeToggleBtn />
         </ThemeProvider>
       </ReactQueryProvider>
-    </SessionProvider>
-  )
-}
+      <Toaster />
+    </AuthSessionProvider>
+  );
+};
 
-export default Providers
+export default Providers;

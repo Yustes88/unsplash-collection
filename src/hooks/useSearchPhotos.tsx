@@ -1,7 +1,7 @@
 import {useInfiniteQuery} from '@tanstack/react-query'
-import {getPhotos} from '~/api/queries'
+import {getPhotos} from '~/api'
 
-export const useSearchPhotos = ({query}: {query: string}) => {
+const useSearchPhotos = ({query}: {query: string}) => {
   return useInfiniteQuery({
     queryKey: ['search/photos', {query}],
     initialPageParam: 1,
@@ -11,3 +11,5 @@ export const useSearchPhotos = ({query}: {query: string}) => {
     enabled: !!query,
   })
 }
+
+export default useSearchPhotos

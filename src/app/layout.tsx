@@ -1,23 +1,27 @@
-import NavBar from '~/components/layout/nav'
-import {fontSans} from '~/components/ui/fonts'
-import {siteConfig} from '~/constants/config'
-import {cn} from '~/lib/utils'
-import '~/styles/globals.css'
+import NavBar from "~/components/layout/nav";
+import { fontSans } from "~/components/ui/fonts";
+import { siteConfig } from "~/constants/config";
+import { cn } from "~/lib/utils";
+import "~/styles/globals.css";
 
-import Providers from '~/providers'
+import Providers from "~/providers";
 
 export const metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
   icons: siteConfig.icons,
-}
+};
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          "bg-background min-h-screen font-sans antialiased",
           fontSans.variable,
         )}
       >
@@ -27,5 +31,5 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         </Providers>
       </body>
     </html>
-  )
+  );
 }

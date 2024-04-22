@@ -1,45 +1,45 @@
-'use client'
-import {Loader2} from 'lucide-react'
-import {useEffect} from 'react'
-import {useInView} from 'react-intersection-observer'
-import {SEED} from '~/helpers'
-import {Skeleton} from '../ui/skeleton'
-import MasonryItem from './masonry-item'
-import {cn} from '~/lib/utils'
-import {useSearchPhotos} from '~/api/hooks/unsplash'
+"use client";
+import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { SEED } from "~/helpers";
+import { Skeleton } from "../ui/skeleton";
+import MasonryItem from "./masonry-item";
+import { cn } from "~/lib/utils";
+import useSearchPhotos from "~/actions/hooks/useSearchPhotos";
 
 const heightClasses = [
-  'h-32',
-  'h-40',
-  'h-48',
-  'h-56',
-  'h-64',
-  'h-72',
-  'h-80',
-  'h-96',
-  'h-64',
-  'h-32',
-  'h-64',
-  'h-72',
-  'h-80',
-]
+  "h-32",
+  "h-40",
+  "h-48",
+  "h-56",
+  "h-64",
+  "h-72",
+  "h-80",
+  "h-96",
+  "h-64",
+  "h-32",
+  "h-64",
+  "h-72",
+  "h-80",
+];
 
-export function MasonryGrid({query}: {query: string}) {
-  const {ref, inView} = useInView()
+export function MasonryGrid({ query }: { query: string }) {
+  const { ref, inView } = useInView();
 
-  const {data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage} =
-    useSearchPhotos({query})
+  const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useSearchPhotos({ query });
 
   useEffect(() => {
     if (inView && hasNextPage) {
-      void fetchNextPage()
+      void fetchNextPage();
     }
-  }, [fetchNextPage, hasNextPage, inView])
+  }, [fetchNextPage, hasNextPage, inView]);
 
-  const content = data?.pages.flatMap(page =>
-    page.results.map(result => result),
-  )
-  const isContent = (content?.length ?? 0) > 0
+  const content = data?.pages.flatMap((page) =>
+    page.results.map((result) => result),
+  );
+  const isContent = (content?.length ?? 0) > 0;
 
   return (
     <>
@@ -51,8 +51,8 @@ export function MasonryGrid({query}: {query: string}) {
       )}
 
       <div
-        className={cn('columns-2 gap-4 md:columns-4', {
-          'min-h-screen': isContent,
+        className={cn("columns-2 gap-4 md:columns-4", {
+          "min-h-screen": isContent,
         })}
       >
         {isLoading
@@ -62,7 +62,7 @@ export function MasonryGrid({query}: {query: string}) {
                 className={`${heightClasses[i % heightClasses.length]} mb-4 w-full break-inside-avoid rounded-md p-4`}
               />
             ))
-          : content?.map(item => <MasonryItem key={item.slug} item={item} />)}
+          : content?.map((item) => <MasonryItem key={item.slug} item={item} />)}
       </div>
 
       <div className="mt-10 flex items-center justify-center">
@@ -77,5 +77,5 @@ export function MasonryGrid({query}: {query: string}) {
 
       {!isLoading && isContent && <div ref={ref}></div>}
     </>
-  )
+  );
 }

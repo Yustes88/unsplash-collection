@@ -1,7 +1,7 @@
-'use client'
-import {Divide as Hamburger} from 'hamburger-react'
-import React from 'react'
+"use client";
 
+import { Menu } from "lucide-react";
+import { AuthButton } from "~/components/auth";
 import {
   Drawer,
   DrawerContent,
@@ -9,36 +9,33 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '~/components/ui/drawer'
-import ThemeToggleBtn from '~/components/ui/theme-toggle-btn'
-import {menus} from '~/data'
-import NavItem from './nav-item'
+} from "~/components/ui/drawer";
+import { menus } from "~/mock";
+import NavItem from "./nav-item";
 
 const NavMobile = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
   return (
-    <Drawer onOpenChange={b => setIsOpen(b)}>
+    <Drawer>
       <DrawerTrigger className="absolute right-1 block sm:hidden">
-        <Hamburger size={20} label="Show menu" rounded toggled={isOpen} />
+        <Menu />
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>UnsplashBox</DrawerTitle>
           <DrawerDescription>
-            {' '}
             The internet’s source for visuals. Powered by creators everywhere.
           </DrawerDescription>
         </DrawerHeader>
 
         <div className="mb-5 flex flex-col items-center gap-2 ">
-          {menus.map(menu => (
+          {menus.map((menu) => (
             <NavItem key={menu.id} item={menu} />
           ))}
-          <ThemeToggleBtn />
+          <AuthButton />
         </div>
       </DrawerContent>
     </Drawer>
-  )
-}
+  );
+};
 
-export default NavMobile
+export default NavMobile;

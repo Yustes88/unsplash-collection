@@ -1,23 +1,33 @@
-import NextAuth from 'next-auth'
+import NextAuth, {AuthOptions} from 'next-auth'
+import Google from 'next-auth/providers/google'
+
 import {PrismaAdapter} from '@auth/prisma-adapter'
 import {PrismaClient} from '@prisma/client'
-import Google from 'next-auth/providers/google'
+import {env} from '~/env.mjs'
 
 const prisma = new PrismaClient()
 
-export const {handlers, auth, signIn, signOut} = NextAuth({
+const options: NextAuthOptions = {}
+
+export const {handlers, signIn, signOut, auth} = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [
-    Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET,
-      authorization: {
-        params: {
-          prompt: 'consent',
-          access_type: 'offline',
-          response_type: 'code',
-        },
-      },
-    }),
-  ],
+  providers: [Google],
+  callbacks: {
+    signIn: async (user, account, profile) => {
+      if (
+        account.provider === 'google' &&
+        profile.verified_email === true &&
+        profile.email.endsWith('@example.com')
+      ) {
+        return Promise.resolve(true)
+      } else {
+        return Promise.resolve(false)
+      }
+    },
+  },
+  secret: env.AUTH_SECRET as string,
+  session: {
+    strategy: 'database',
+    maxAge: 30 * 24 * 60 * 60,
+  },
 })

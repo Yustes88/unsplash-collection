@@ -1,9 +1,9 @@
-import type {Config} from 'tailwindcss'
-import {shadcnPreset} from './src/lib/shadcn-ui'
+import type { Config } from "tailwindcss";
+import { shadcnPreset } from "./src/lib/shadcn-ui";
 
 const config = {
   presets: [shadcnPreset],
-  content: ['./app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
-} satisfies Config
+  content: ["./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+} satisfies Config;
 
-export default config
+export default config;
