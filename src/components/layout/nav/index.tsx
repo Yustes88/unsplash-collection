@@ -9,7 +9,7 @@ const NavBar = () => {
     <div className="h-16 border-b dark:border-gray-800">
       <div className="container flex h-full flex-row items-center justify-between gap-4">
         <Logo />
-        <div className="hidden items-center sm:flex sm:gap-2">
+        <div className="hidden items-center sm:flex sm:gap-4">
           {menus.map((menu) => (
             <NavItem key={menu.id} item={menu} />
           ))}

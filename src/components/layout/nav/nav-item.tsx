@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 import { type MenusType } from "~/mock/menus";
 
 type NavItemProps = {
@@ -11,11 +12,13 @@ type NavItemProps = {
 const NavItem = ({ item }: NavItemProps) => {
   const path = usePathname();
   return (
-    <Link href={item.url}>
-      <Button variant={path == item.url ? "secondary" : "ghost"}>
-        {item.title}
-      </Button>
-    </Link>
+    <Button
+      variant="link"
+      asChild
+      className={cn("px-0 uppercase", { "font-bold": path === item.url })}
+    >
+      <Link href={item.url}>{item.title}</Link>
+    </Button>
   );
 };
 

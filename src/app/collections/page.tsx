@@ -4,7 +4,7 @@ import { GradientTypo } from "~/components/ui/gradient-typo";
 const CollectionPage = () => {
   return (
     <div className="page-container">
-      <GradientTypo heading="Collections">
+      <GradientTypo heading=" Collections">
         <p className="mx-auto max-w-md text-sm sm:text-base">
           Explore the world through collections of beautiful photos free to use
           under the{" "}
