@@ -27,7 +27,7 @@ const NavMobile = () => {
           </DrawerDescription>
         </DrawerHeader>
 
-        <div className="mb-5 flex flex-col items-center gap-2 ">
+        <div className="mb-5 flex flex-col items-center justify-center gap-2 ">
           {menus.map((menu) => (
             <NavItem key={menu.id} item={menu} />
           ))}

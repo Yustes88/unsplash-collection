@@ -7,9 +7,30 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Link from "next/link";
+
 const AuthBtn = () => {
-  const { status } = useSession();
+  const { status, data } = useSession();
   const router = useRouter();
+
+  const getUserFallback = () => {
+    if (data && data.user && data.user.name) {
+      const userName = data.user.name;
+      const userArray = userName.split(" ");
+      if (userArray && userArray.length > 0) {
+        return `${userArray[0]![0]}${userArray[1]![0]}`.toUpperCase();
+      }
+    }
+  };
 
   const signOutHandle = async () => {
     const data = await signOut({ redirect: false, callbackUrl: "/" });
@@ -25,9 +46,40 @@ const AuthBtn = () => {
         </Button>
       )}
       {status === "authenticated" && (
-        <Button className="w-full" onClick={signOutHandle}>
-          Logout
-        </Button>
+        <div className="flex items-center justify-center ">
+          {data && data.user && data.user.name && (
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Avatar>
+                  <AvatarImage src={data.user.image!} />
+                  <AvatarFallback>{getUserFallback()}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuLabel>
+                  <div className="space-y-0">
+                    <h2 className="text-sm capitalize italic">
+                      {data?.user.name}
+                    </h2>
+                    <h3 className="text-xs font-normal text-muted-foreground">
+                      {data?.user.email}
+                    </h3>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/user/collections">My Collections</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/user/create/collection">Create Collection</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={signOutHandle}>
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+        </div>
       )}
       {status === "loading" && <AuthLoading />}
     </div>
